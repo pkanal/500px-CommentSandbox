@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Get an API Key</title>
+  </head>
+  <script type="text/javascript">
+    const submitEmail = e => {
+      const email = document.getElementById('email').value;
+      const initPost = {
+        method: 'POST',
+        mode: 'cors',
+      };
+
+      fetch(`/api/key/${email}`, initPost)
+        .then( response => response.text())
+        .then( data => {
+          document.getElementById('result').innerHTML = data;
+        }).catch( e => {
+          document.getElementById('result').innerHTML = e;
+        });
+     }
+  </script>
+  <body>
+    <label for="email"> Enter your e-mail to get or update your key</label>
+    <input id="email" type="text" name="email" value="">
+    <button onClick="submitEmail()"> Get a Key </button>
+    <div id="result"></div>
+  </body>
+</html>
